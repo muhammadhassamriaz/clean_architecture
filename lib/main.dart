@@ -9,6 +9,7 @@ import 'package:url_strategy/url_strategy.dart';
 import 'package:yts_mobile/app/app.dart';
 import 'package:yts_mobile/core/core.dart';
 import 'package:yts_mobile/firebase_options.dart';
+import 'package:yts_mobile/core/utils/time_cost.dart'
 
 void main() {
   runZonedGuarded<Future<void>>(
@@ -35,7 +36,10 @@ void main() {
       );
     },
     // ignore: only_throw_errors
-    (e, _) => throw e,
+    (e, _) {
+      mainThreadHeavyTaskTimeCost();
+      rethrow;
+    },
   );
 }
 
